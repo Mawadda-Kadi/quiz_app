@@ -25,10 +25,12 @@ class QuizController extends Controller
 
     public function start()
     {
-        // Fetch all questions and pass to the view
-        $questions = Question::all();
-        return view('quiz.start', compact('questions'));
+        // Fetch 10 random questions
+        $questions = \App\Models\Question::inRandomOrder()->limit(10)->get();
+
         // compact('questions') sends the data to the Blade view
+        return view('quiz.start', compact('questions'));
+
     }
 
     public function submit(Request $request)
@@ -55,7 +57,7 @@ class QuizController extends Controller
             'score' => $score
         ]);
 
-        // Passes the calculated score to the quiz.result view for display
-        return view('quiz.result', compact('score'));
+        // Redirect to the result page with the score as a query parameter
+        return redirect()->route('quiz.result', ['score' => $score]);
     }
 }
