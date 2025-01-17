@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\PlayerController;
+use App\Http\Controllers\LeaderboardController;
 use Illuminate\Http\Request;
 
 Route::get('/', function () {
