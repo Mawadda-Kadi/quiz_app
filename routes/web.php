@@ -8,7 +8,8 @@ use App\Http\Controllers\LeaderboardController;
 use Illuminate\Http\Request;
 
 Route::get('/', function () {
-    return view('welcome');
+    $categories = ['General Information', 'IQ Test', 'Coding', 'Pokemon'];
+    return view('welcome', compact('categories'));
 });
 
 // The auth middleware ensures that only authenticated users can access these routes
@@ -16,16 +17,17 @@ Route::get('/', function () {
 // ->group used to apply middleware to multiple routes without repeating it
 Route::middleware(['auth'])->group(function () {
     Route::get('/quiz', [QuizController::class, 'index'])->name('quiz.index');
-    Route::get('/quiz/start', [QuizController::class, 'start'])->name('quiz.start');
-    Route::post('/quiz/submit', [QuizController::class, 'submit'])->name('quiz.submit');
+    Route::get('/quiz/question/{index}', [QuizController::class, 'question'])->name('quiz.question');
+    Route::post('/quiz/submit', [QuizController::class, 'submitAnswer'])->name('quiz.submitAnswer');
+    Route::get('/quiz/result', [QuizController::class, 'result'])->name('quiz.result');
     Route::get('/player/{username}', [PlayerController::class, 'show'])->name('player.show');
 });
 
 Route::get('/leaderboard', [\App\Http\Controllers\LeaderboardController::class, 'index'])->name('leaderboard.index');
 
-Route::get('/quiz/result', function (Request $request) {
-    return view('quiz.result', ['score' => $request->query('score')]);
-})->name('quiz.result');
+// Route::get('/quiz/result', function (Request $request) {
+//     return view('quiz.result', ['score' => $request->query('score')]);
+// })->name('quiz.result');
 
 Route::get('/quiz/instructions', function () {
     return view('quiz/instructions');

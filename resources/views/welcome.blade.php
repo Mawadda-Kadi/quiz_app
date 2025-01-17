@@ -6,7 +6,7 @@
         <ul>
             @foreach ($categories as $category)
             <li>
-                <a href="{{ route('quiz.start', ['category' => $category]) }}">
+                <a href="{{ route('quiz.index', ['category' => $category]) }}">
                     {{ $category }}
                 </a>
             </li>

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Score extends Model
 {
     use HasFactory;
@@ -24,5 +25,18 @@ class Score extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+
+    // Define the relationship to the Question model
+    public function question()
+    {
+        return $this->belongsTo(Question::class);
+    }
+
+    // Accessor getCategoryAttribute() to get the category from the related question
+    public function getCategoryAttribute()
+    {
+        return $this->attributes['category'] ?? 'Unknown';
     }
 }

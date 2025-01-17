@@ -14,7 +14,9 @@
         @else
         <ul>
             @foreach ($scores as $score)
-            <li>{{ $score->score }} points - {{ $score->created_at->format('d M Y, H:i') }}</li>
+            <li>
+                {{ $score->score }} points ({{ $score->category }}) - {{ $score->created_at->format('d M Y, H:i') }}
+            </li>
             @endforeach
         </ul>
         @endif
@@ -25,5 +27,3 @@
         </form>
     </div>
 </x-layout>
-
-

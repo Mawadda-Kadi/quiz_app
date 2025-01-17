@@ -10,7 +10,6 @@
     <nav>
         <h1>Quiz Game</h1>
         <a href="/">Home</a>
-        <a href="/quiz/start">Start Game</a>
         <a href="/leaderboard/">Leaderboard</a>
         <a href="/quiz/instructions">Instructions</a>
 

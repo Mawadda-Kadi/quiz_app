@@ -17,50 +17,88 @@ class QuizController extends Controller
  */
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        // Display quiz introduction page
-        return view('quiz.index');
-    }
+        // Define available categories
+        $categories = ['General Information', 'IQ Test', 'Coding', 'Pokemon'];
 
+        // Get the selected category from the query, defaulting to null
+        $category = $request->query('category');
 
-    public function start(Request $request)
-    {
-        $category = $request->query('category', 'General Information'); // Default category
+        if (!$category) {
+            // If no category is selected, pass only the categories to the view
+            return view('quiz.index', compact('categories'));
+        }
 
-        // Fetch 10 random questions from the selected category
+        // If a category is selected, fetch 10 random questions for the selected category
         $questions = \App\Models\Question::where('category', $category)
             ->inRandomOrder()
             ->limit(10)
             ->get();
 
-        // compact('questions') sends the data to the Blade view
-        return view('quiz.start', compact('questions', 'category'));
+        // Store questions and category in the session for navigation
+        session(['questions' => $questions, 'category' => $category]);
+
+        // Redirect to the first question
+        return redirect()->route('quiz.question', ['index' => 0]);
     }
 
-    
-    public function chooseCategory()
+    public function question(Request $request, $index)
     {
-        $categories = ['General Information', 'IQ Test', 'Coding', 'Pokemon'];
+        // Retrieve questions from the session
+        $questions = session('questions', []);
+        $category = session('category', 'Unknown');
 
-        return view('quiz.choose-category', compact('categories'));
+        // Ensure the index is within bounds
+        if (!isset($questions[$index])) {
+            return redirect()->route('quiz.result');
+        }
+
+        // Get the current question
+        $question = $questions[$index];
+
+        // Calculate progress
+        $progress = ($index + 1) / count($questions) * 100;
+
+        return view('quiz.question', compact('question', 'index', 'progress', 'category'));
     }
 
-
-    public function submit(Request $request)
+    public function submitAnswer(Request $request)
     {
-        // Initialize Variables
+        // Store the user's answer in the session
+        $answers = session('answers', []);
+        $answers[$request->input('index')] = $request->input('answer');
+        session(['answers' => $answers]);
+
+        // Redirect to the next question or result page
+        $nextIndex = $request->input('index') + 1;
+        $questions = session('questions', []);
+
+        if ($nextIndex >= count($questions)) {
+            return redirect()->route('quiz.result');
+        }
+
+        return redirect()->route('quiz.question', ['index' => $nextIndex]);
+    }
+
+        // foreach ($answers as $id => $answer) {
+        //     $question = Question::find($id);
+        //     // Check Correctness:
+        //     // Compares the submitted answer with the correct_option in the database.
+        //     if ($question && $question->correct_option == $answer) {
+        //         $score++;
+        //     }
+        // }
+
+    public function result()
+    {
+        $questions = session('questions', []);
+        $answers = session('answers', []);
+        $category = session('category', 'Unknown');
         $score = 0;
-        $answers = $request->input('answers');
-        // Associative array retrieves the user's submitted answers from the request
-        // keys are question IDs and values are the selected options.
 
-
-        foreach ($answers as $id => $answer) {
-            $question = Question::find($id);
-            // Check Correctness:
-            // Compares the submitted answer with the correct_option in the database.
-            if ($question && $question->correct_option == $answer) {
+        foreach ($questions as $index => $question) {
+            if (isset($answers[$index]) && $answers[$index] == $question->correct_option) {
                 $score++;
             }
         }
@@ -68,10 +106,10 @@ class QuizController extends Controller
         // Save the score in the database
         Score::create([
             'user_id' => Auth::id(),
-            'score' => $score
+            'score' => $score,
+            'category' => $category,
         ]);
 
-        // Redirect to the result page with the score as a query parameter
-        return redirect()->route('quiz.result', ['score' => $score]);
+        return view('quiz.result', compact('score', 'category'));
     }
 }

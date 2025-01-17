@@ -10,11 +10,11 @@ class AddCategoryToQuestionsTable extends Migration
 
     public function up(): void
     {
+
         Schema::table('questions', function (Blueprint $table) {
             // Make the column nullable
             $table->string('category')->nullable()->after('question');
         });
-
     }
 
     public function down(): void
