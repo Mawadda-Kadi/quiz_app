@@ -3,6 +3,11 @@
         <h1>Player Profile: {{ $user->name }}</h1>
         <p>Email: {{ $user->email }}</p>
 
+        <h2>Best Result</h2>
+        <p>
+            {{ $bestScore ? $bestScore . ' points' : 'No results yet.' }}
+        </p>
+
         <h2>Scores</h2>
         @if ($scores->isEmpty())
         <p>No scores yet.</p>

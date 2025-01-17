@@ -23,15 +23,29 @@ class QuizController extends Controller
         return view('quiz.index');
     }
 
-    public function start()
+
+    public function start(Request $request)
     {
-        // Fetch 10 random questions
-        $questions = \App\Models\Question::inRandomOrder()->limit(10)->get();
+        $category = $request->query('category', 'General Information'); // Default category
+
+        // Fetch 10 random questions from the selected category
+        $questions = \App\Models\Question::where('category', $category)
+            ->inRandomOrder()
+            ->limit(10)
+            ->get();
 
         // compact('questions') sends the data to the Blade view
-        return view('quiz.start', compact('questions'));
-
+        return view('quiz.start', compact('questions', 'category'));
     }
+
+    
+    public function chooseCategory()
+    {
+        $categories = ['General Information', 'IQ Test', 'Coding', 'Pokemon'];
+
+        return view('quiz.choose-category', compact('categories'));
+    }
+
 
     public function submit(Request $request)
     {

@@ -18,7 +18,11 @@ class PlayerController extends Controller
 
         $scores = Score::where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
 
-        return view('player.show', compact('user', 'scores'));
+        // Find the best score for the user
+        $bestScore = Score::where('user_id', $user->id)->max('score');
+
+        // Pass user, scores, and bestScore to the view
+        return view('player.show', compact('user', 'scores', 'bestScore'));
     }
 }
 
