@@ -19,6 +19,15 @@ class QuizController extends Controller
 
     public function index(Request $request)
     {
+
+        // // Debug Auth::id() and check if the user is authenticated
+        // if (!Auth::check()) {
+        //     return redirect()->route('login')->with('error', 'You must be logged in to start the quiz.');
+        // }
+
+        // dd(Auth::id(), $request->query('category'));
+
+
         // Define available categories
         $categories = ['General Information', 'IQ Test', 'Coding', 'Pokemon'];
 
@@ -36,8 +45,17 @@ class QuizController extends Controller
             ->limit(10)
             ->get();
 
+
+        // Debugging: Check if questions are fetched
+        if ($questions->isEmpty()) {
+            dd("No questions found for category: " . $category);
+        }
+
         // Store questions and category in the session for navigation
         session(['questions' => $questions, 'category' => $category]);
+
+        // // Debugging session data
+        // dd(session()->all());
 
         // Redirect to the first question
         return redirect()->route('quiz.question', ['index' => 0]);
@@ -46,6 +64,7 @@ class QuizController extends Controller
     public function question(Request $request, $index)
     {
         // Retrieve questions from the session
+        // Ensure all questions have been answered
         $questions = session('questions', []);
         $category = session('category', 'Unknown');
 
@@ -92,16 +111,32 @@ class QuizController extends Controller
 
     public function result()
     {
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', 'You must be logged in to save your score.');
+        }
+
         $questions = session('questions', []);
         $answers = session('answers', []);
         $category = session('category', 'Unknown');
         $score = 0;
+
+        // Ensure all questions have been answered
+        if (empty($questions)) {
+            return redirect()->route('quiz.index')->with('error', 'No questions available.');
+        }
+
 
         foreach ($questions as $index => $question) {
             if (isset($answers[$index]) && $answers[$index] == $question->correct_option) {
                 $score++;
             }
         }
+
+        // // Debug user ID before saving
+        // $userId = Auth::id();
+        // if (!$userId) {
+        //     return redirect()->route('login')->with('error', 'Failed to save your score. Please log in again.');
+        // }
 
         // Save the score in the database
         Score::create([

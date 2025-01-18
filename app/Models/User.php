@@ -22,6 +22,10 @@ class User extends Authenticatable
         'password',
     ];
 
+    protected $primaryKey = 'id';
+    protected $keyType = 'int';
+    public $incrementing = true; // Ensure auto-incrementingfor id is enabled
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -34,7 +38,7 @@ class User extends Authenticatable
 
     public function getAuthIdentifierName()
     {
-        return 'name'; // Use 'username' instead of 'email'
+        return 'id'; // Use 'username' instead of 'email'
     }
 
     /**
