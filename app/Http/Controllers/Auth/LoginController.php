@@ -37,4 +37,15 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
         $this->middleware('auth')->only('logout');
     }
+
+    /**
+     * Get the login field name used by the application.
+     *
+     * @return string
+     */
+    
+    public function username()
+    {
+        return 'name'; // Use 'name' for login
+    }
 }

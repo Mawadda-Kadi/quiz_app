@@ -18,7 +18,6 @@ return new class extends Migration
                 // ->index prevents issues with special characters and
                 // ensures compatibility across browsers and servers.
                 $table->string('email')->nullable()->change();
-                $table->timestamp('email_verified_at')->nullable();
                 $table->string('password');
                 $table->rememberToken();
                 $table->timestamps();
