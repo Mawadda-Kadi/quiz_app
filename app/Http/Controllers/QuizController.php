@@ -143,6 +143,7 @@ class QuizController extends Controller
             'user_id' => Auth::id(),
             'score' => $score,
             'category' => $category,
+            //'question_id' => $questions[0]->id ?? null, // Associate with the first question in the session
         ]);
 
         return view('quiz.result', compact('score', 'category'));
