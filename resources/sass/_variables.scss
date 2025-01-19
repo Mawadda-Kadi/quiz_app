@@ -1,7 +1,21 @@
-// Body
-$body-bg: #f8fafc;
 
-// Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
-$font-size-base: 0.9rem;
-$line-height-base: 1.6;
+// --------------------------- Colors
+$primary-color: #1f1f1f;
+$secondary-color: #fca311;
+$text-color: #ffffff;
+$secondary-text-color: #bdbdbd; // Muted text
+$danger-color: #d90429;
+
+// ------------------------------- Fonts
+$font-family-primary: 'Roboto', sans-serif;
+$font-family-secondary: 'Orbitron', sans-serif;
+
+// ----------------------------- Spacing
+$padding: 16px;
+$margin: 16px;
+
+// ------------------------ Border Radius
+$border-radius: 8px;
+
+// -------------------------- Transitions
+$transition-speed: 0.3s;

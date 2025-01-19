@@ -2,7 +2,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Quiz Game</title>
+
+    <link href="https://8000-mawaddakadi-quizapp-ngx6bj9jzfp.ws-eu117.gitpod.io/build/assets/app-BIkE3b6P.css" rel="stylesheet">
+
+
+
+
 </head>
 <body>
 

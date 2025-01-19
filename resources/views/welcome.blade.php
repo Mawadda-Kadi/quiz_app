@@ -13,7 +13,4 @@
             @endforeach
         </ul>
     </div>
-
-    <p>Start the Game</p>
-    <a href="/quiz/" class="btn">START</a>
 </x-layout>
