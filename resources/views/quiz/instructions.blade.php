@@ -22,8 +22,10 @@
         </ul>
 
         <h3>Step 3: Submit Your Answers</h3>
-        <p>Once you've answered all 10 questions, press the <strong>Submit</strong> button to lock in your answers.</p>
-        <p>You will see your <strong>final score</strong> and a breakdown of correct and incorrect answers.</p>
+        <ul>
+            <li>Once you've answered all <strong>10 questions</strong>, press the <strong>Submit</strong> button to lock in your answers.</li>
+            <li>You will see your <strong>final score</strong> and a breakdown of correct and incorrect answers.</li>
+        </ul>
 
         <h3>Step 4: Explore Your Profile</h3>
         <p>Visit your <strong>Profile</strong> to:</p>
@@ -34,8 +36,11 @@
         </ul>
 
         <h3>Step 5: Climb the Leaderboard</h3>
-        <p>Head to the <strong>Leaderboard</strong> to see the <strong>top 10 players</strong> across all categories.</p>
-        <p>Compete for the top spot by improving your scores!</p>
+        <ul>
+            <li>Head to the <strong>Leaderboard</strong> to see the <strong>top 10 players</strong> across all categories.</li>
+            <li>Compete for the top spot by improving your scores!</li>
+        </ul>
+
 
         <h3>Tips for Success</h3>
         <ul>

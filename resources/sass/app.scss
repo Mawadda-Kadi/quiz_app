@@ -44,48 +44,80 @@ body {
 // Header within Game Container
 .header-container {
     justify-self: center;
-    max-width: 800px;
+    max-width: 900px;
     width: 100%;
     margin: 0 auto;
-    padding: 20px;
-
+    padding: 20px 0;
 }
 
 header {
     background-color: #fca311;
     color: #1f1f1f;
     padding: 10px 20px;
-    //border-radius: 10px 10px 0 0;
     text-align: left;
+}
 
-    nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: right;
+header nav {
+    display: flex;
+    justify-content: space-between;
+    /* Space between h1 and ul */
+    align-items: center;
+    /* Vertically center align items */
+    flex-wrap: wrap;
+    /* Allow wrapping on smaller screens */
+    padding: 10px 0;
+}
 
-        h1 {
-            font-size: 1.8rem;
-            color: #1f1f1f;
-            font-family: 'Orbitron', sans-serif;
-            text-align: left;
-        }
+header nav h1 {
+    font-size: 1.8rem;
+    color: #1f1f1f;
+    font-family: 'Orbitron', sans-serif;
+    margin: 0;
+    flex-shrink: 0;
+    /* Prevent shrinking */
+}
 
-        a {
-            color: #1f1f1f;
-            text-decoration: none;
-            margin: auto 15;
-            //margin-left: 15px;
-            font-size: 1rem;
-            text-align: right;
-            //margin-right: 15px;
-            transition: transform 0.3s, background 0.3s;
+header nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 20px;
+    flex-grow: 1;
+    justify-content: flex-end;
+}
 
-            &:hover {
-                transform: scale(1.05);
-            }
-        }
+header nav ul li {
+    margin: 0;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #1f1f1f;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background 0.3s, transform 0.3s;
+
+    &:hover {
+        background: #f4b95a;
+        transform: scale(1.05);
     }
 }
+
+.menu-icon {
+    display: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    margin-left: auto;
+    background-size: contain;
+}
+
+/* When the 'show' class is added */
+nav ul.show {
+    display: block;
+}
+
+
 
 // Main Continer
 .main-container {
@@ -160,7 +192,7 @@ ul {
     }
 }
 
-.card-header{
+.card-header {
     background: #fca311;
 }
 
@@ -288,10 +320,30 @@ table {
 // Player Container
 .player-container {
 
-    .best-result,
-    .scores {
+    .best-result {
         color: #fff;
-        margin: 15px;
+        margin-bottom: 30px;
+    }
+
+    .scores {
+        margin-top: 0;
+        color: #fff;
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        ul {
+            margin-top: 10px;
+            display: block;
+            list-style: none;
+            padding: 0;
+
+            li {
+                margin-bottom: 10px;
+                padding: 0;
+            }
+        }
     }
 
     ul {
@@ -329,23 +381,24 @@ table {
     }
 
     h3 {
-        margin-top: 20px;
         background: #fca311;
         line-height: 1.5;
         letter-spacing: 2px;
         padding: 7px;
         display: inline;
-        border-radius: 4px;
+        border-radius: 3px;
     }
 
     p {
         color: #fff;
         line-height: 1.8;
         letter-spacing: 1px;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 
     ul {
-        list-style: none;
+        list-style-type: disc;
         margin: 25px 0;
         padding: 0;
         display: grid;
@@ -395,18 +448,53 @@ table {
         margin: 10px;
     }
 
-    header nav h1 {
+    header nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+    }
+
+    header nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        padding: 10px 0;
+        margin: 10px 0;
+        background-color: #fca311;
+        transition: opacity 0.3s ease-in-out;
+        border-radius: 5px;
+        justify-content: flex-start;
+        flex-grow: 0;
+    }
+
+    nav ul.show {
+        display: flex;
+        flex-direction: column;
+        transition: opacity 0.3s ease-in-out;
+        border-radius: 5px;
+    }
+
+    h1 {
         font-size: 1.5rem;
+        margin: 0;
+        line-height: 1;
     }
 
-    ul {
-        //grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        //grid-template-columns: 1fr;
-        //grid-template-rows: auto;
-        grid-template-columns: 1fr;
+    .menu-icon {
+        display: block;
+        cursor: pointer;
+        font-size: 1.5rem;
+        margin: 0;
+        line-height: 1;
     }
 
-    li a {
-        font-size: 0.9rem;
+    nav ul li {
+        margin: 5px 0;
+    }
+
+    nav ul li:hover {
+        background-color: #ffaa00;
+        border-radius: 3px;
     }
 }

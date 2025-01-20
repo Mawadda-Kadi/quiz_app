@@ -5,7 +5,9 @@
 
     <title>Quiz Game</title>
 
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+     <!-- Vite assets -->
+     @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/js/dropdown.js'])
+
 
 </head>
 <body>
@@ -14,22 +16,28 @@
             <header>
                 <nav>
                     <h1>Quiz Game</h1>
-                    <a href="/">Home</a>
-                    <a href="/leaderboard/">Leaderboard</a>
-                    <a href="/quiz/instructions">Instructions</a>
-
-                    @auth
-                    <a href="{{ route('player.show', ['username' => urlencode(auth()->user()->name)]) }}">{{ auth()->user()->name }}</a>
-                    @else
-                    <a href="/login">Login</a>
-                    @endauth
-
+                    <span class="menu-icon">☰</span>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/leaderboard/">Leaderboard</a></li>
+                        <li><a href="/quiz/instructions">Instructions</a></li>
+                        @auth
+                        <li>
+                            <a href="{{ route('player.show', ['username' => urlencode(auth()->user()->name)]) }}">
+                                {{ auth()->user()->name }}
+                            </a>
+                        </li>
+                        @else
+                        <li><a href="/login">Login</a></li>
+                        @endauth
+                    </ul>
                 </nav>
             </header>
-        <div>
-                <main class="container">
-                    {{ $slot }}
-                </main>
-            </div>
+        </div>
+        <main>
+            {{ $slot }}
+        </main>
+    </div>
+    <script src="/resources/js/dropdown.js"></script>
 </body>
 </html>

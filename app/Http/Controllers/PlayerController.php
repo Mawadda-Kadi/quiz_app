@@ -16,7 +16,11 @@ class PlayerController extends Controller
         // Perform case-insensitive matching
         $user = User::whereRaw('LOWER(name) = ?', [strtolower($decodedUsername)])->firstOrFail();
 
-        $scores = Score::where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
+        // Get the last 10 scores
+        $scores = Score::where('user_id', $user->id)
+            ->orderBy('created_at', 'desc')
+            ->take(10)
+            ->get();
 
         // Find the best score for the user
         $bestScore = Score::where('user_id', $user->id)->max('score');

@@ -10,7 +10,7 @@
         </div>
 
         <div class="scores">
-            <h2>Scores</h2>
+            <h2>Last Scores</h2>
             @if ($scores->isEmpty())
             <p>No scores yet.</p>
             @else
