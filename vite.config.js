@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
+import fs from 'fs';
 
 export default defineConfig({
     plugins: [
@@ -12,6 +13,14 @@ export default defineConfig({
         }),
     ],
     server: {
-        https: true, // Enable HTTPS for the Vite dev server
+        https: {
+            key: fs.readFileSync('/workspace/quiz_app/localhost-key.pem'), // Update path
+            cert: fs.readFileSync('/workspace/quiz_app/localhost.pem'),   // Update path
+        },
+        host: '0.0.0.0', // Expose server to Gitpod environment
+        port: 5173,
+        hmr: {
+            host: 'localhost',
+        },
     },
 });

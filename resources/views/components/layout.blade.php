@@ -5,33 +5,31 @@
 
     <title>Quiz Game</title>
 
-    <link href="https://8000-mawaddakadi-quizapp-ngx6bj9jzfp.ws-eu117.gitpod.io/build/assets/app-BIkE3b6P.css" rel="stylesheet">
-
-
-
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
 </head>
 <body>
+    <div class="game-container">
+        <div class="header-container">
+            <header>
+                <nav>
+                    <h1>Quiz Game</h1>
+                    <a href="/">Home</a>
+                    <a href="/leaderboard/">Leaderboard</a>
+                    <a href="/quiz/instructions">Instructions</a>
 
-<header>
-    <nav>
-        <h1>Quiz Game</h1>
-        <a href="/">Home</a>
-        <a href="/leaderboard/">Leaderboard</a>
-        <a href="/quiz/instructions">Instructions</a>
+                    @auth
+                    <a href="{{ route('player.show', ['username' => urlencode(auth()->user()->name)]) }}">{{ auth()->user()->name }}</a>
+                    @else
+                    <a href="/login">Login</a>
+                    @endauth
 
-         @auth
-         <a href="{{ route('player.show', ['username' => urlencode(auth()->user()->name)]) }}">{{ auth()->user()->name }}</a>
-         @else
-         <a href="/login">Login</a>
-         @endauth
-
-    </nav>
-</header>
-
-<main class="container">
-    {{ $slot }}
-</main>
-
+                </nav>
+            </header>
+        <div>
+                <main class="container">
+                    {{ $slot }}
+                </main>
+            </div>
 </body>
 </html>

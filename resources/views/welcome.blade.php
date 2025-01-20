@@ -1,12 +1,12 @@
 <x-layout>
-    <h1>Welcome to Quiz Game</h1>
-
-    <div class="container">
-        <h1>Choose a Category</h1>
+    <div class="main-container">
+        <h1>Welcome to Quiz Game</h1>
+        <h3>Choose a Category</h3>
         <ul>
             @foreach ($categories as $category)
             <li>
                 <a href="{{ route('quiz.index', ['category' => $category]) }}">
+                    <img src="{{ asset('images/categories/' . strtolower($category) . '.jpeg') }}" alt="{{ $category }}">
                     {{ $category }}
                 </a>
             </li>

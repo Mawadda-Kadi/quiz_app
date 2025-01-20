@@ -1,6 +1,5 @@
-// To Compile SASS: npm run dev
 // To Optimize the Output for Production: npm run build
-// To watch for changes: npm run watch
+
 
 // Fonts
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Orbitron:wght@400;700&display=swap');
@@ -20,51 +19,157 @@
 }
 
 body {
-    font-family: $font-family-primary;
-    background-color: $primary-color;
-    color: $text-color;
-    line-height: 1.6;
+    font-family: 'Roboto', sans-serif;
+    background-color: #1f1f1f;
+    color: #000;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+// Game Container
+.game-container {
+    color: #1f1f1f;
+    max-width: 900px;
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+
+}
+
+// Header within Game Container
+.header-container {
+    justify-self: center;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+
 }
 
 header {
-    background: $secondary-color;
-    padding: $padding;
+    background-color: #fca311;
+    color: #1f1f1f;
+    padding: 10px 20px;
+    //border-radius: 10px 10px 0 0;
+    text-align: left;
 
     nav {
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: right;
 
         h1 {
-            font-family: $font-family-secondary;
-            font-size: 2rem;
-            color: $text-color;
+            font-size: 1.8rem;
+            color: #1f1f1f;
+            font-family: 'Orbitron', sans-serif;
+            text-align: left;
         }
 
         a {
+            color: #1f1f1f;
             text-decoration: none;
-            color: $text-color;
-            margin-left: $margin;
-            transition: color $transition-speed;
+            margin: auto 15;
+            //margin-left: 15px;
+            font-size: 1rem;
+            text-align: right;
+            //margin-right: 15px;
+            transition: transform 0.3s, background 0.3s;
 
             &:hover {
-                color: $secondary-text-color;
+                transform: scale(1.05);
             }
         }
     }
 }
 
-.container {
-    padding: $padding;
-    max-width: 1200px;
-    margin: auto;
+// Main Continer
+.main-container {
+    background: #1f1f1f;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 800px;
+    width: 80%;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    overflow: hidden;
+    //position: relative;
+}
+
+// Main Content H1 and H3
+h1 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+}
+
+h3 {
+    margin-top: 15px;
+    color: #fff;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+// Category Links (Grid Layout)
+ul {
+    list-style: none;
+    margin: 25px 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+
+    li {
+        background: #fca311;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+
+        a {
+            text-decoration: none;
+            color: #1f1f1f;
+            font-size: 1rem;
+            font-family: 'Orbitron', sans-serif;
+            ;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px;
+            transition: transform 0.3s, background 0.3s;
+
+            &:hover {
+                background: #f4b95a;
+                transform: scale(1.05);
+            }
+
+            img {
+                width: 100px;
+                height: 100px;
+                object-fit: cover;
+                border-radius: 50%;
+                margin-bottom: 10px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+        }
+    }
+}
+
+.card-header{
+    background: #fca311;
 }
 
 .card {
-    background: $secondary-color;
+    background: #1f1f1f;
     padding: $padding;
     border-radius: $border-radius;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: #fff;
 }
 
 button {
@@ -76,6 +181,8 @@ button {
     font-family: $font-family-secondary;
     cursor: pointer;
     transition: background $transition-speed;
+    margin: 15px;
+    display: flex;
 
     &:hover {
         background: lighten($secondary-color, 10%);
@@ -138,8 +245,25 @@ table {
     }
 }
 
+// Question Container
+.question-container {
+    background: #1f1f1f;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 800px;
+    width: 80%;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    overflow: hidden;
+    color: #fff;
+    line-height: 1.5;
+    line-height: 24px;
+}
+
 // Progress Bar
 .progress {
+    margin-top: 20px;
     background: lighten($primary-color, 20%);
     border-radius: $border-radius;
     overflow: hidden;
@@ -149,6 +273,107 @@ table {
         height: 20px;
         transition: width $transition-speed;
     }
+}
+
+// Quiz Result Container
+.quiz-result-container {
+    color: #fff;
+    margin: 15px;
+
+    a {
+        margin-top: 10px;
+    }
+}
+
+// Player Container
+.player-container {
+
+    .best-result,
+    .scores {
+        color: #fff;
+        margin: 15px;
+    }
+
+    ul {
+        list-style: none;
+        margin: 25px 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        color: #fff;
+        line-height: 1.8;
+        letter-spacing: 1px;
+
+        li {
+            background: #1f1f1f;
+            border-radius: 0px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: auto;
+            padding: 10px;
+            color: #fff;
+            line-height: 1.8;
+            letter-spacing: 1px;
+        }
+    }
+
+}
+
+// Instructions Container
+.instructions-container {
+
+    h1 {
+        text-align: center;
+        letter-spacing: 2px;
+
+    }
+
+    h3 {
+        margin-top: 20px;
+        background: #fca311;
+        line-height: 1.5;
+        letter-spacing: 2px;
+        padding: 7px;
+        display: inline;
+        border-radius: 4px;
+    }
+
+    p {
+        color: #fff;
+        line-height: 1.8;
+        letter-spacing: 1px;
+    }
+
+    ul {
+        list-style: none;
+        margin: 25px 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        color: #fff;
+        line-height: 1.8;
+        letter-spacing: 1px;
+
+        li {
+            background: #1f1f1f;
+            border-radius: 0px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: auto;
+            padding: 10px;
+            color: #fff;
+            line-height: 1.8;
+            letter-spacing: 1px;
+        }
+    }
+}
+
+// Login and Register Container
+.auth-container {
+    margin-top: 50px;
+    background-color: #1f1f1f;
+    color: #fff;
+
 }
 
 // Utilities
@@ -162,4 +387,26 @@ table {
 
 .mb-3 {
     margin-bottom: $margin / 2;
+}
+
+// Responsive Adjustments
+@media (max-width: 768px) {
+    .game-container {
+        margin: 10px;
+    }
+
+    header nav h1 {
+        font-size: 1.5rem;
+    }
+
+    ul {
+        //grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        //grid-template-columns: 1fr;
+        //grid-template-rows: auto;
+        grid-template-columns: 1fr;
+    }
+
+    li a {
+        font-size: 0.9rem;
+    }
 }

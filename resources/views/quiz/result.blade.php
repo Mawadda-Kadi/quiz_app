@@ -1,6 +1,6 @@
 <x-layout>
-    <div class="container">
-        <h1>Quiz Results</h1>
+    <div class="quiz-result-container">
+        <h1>Quiz Result</h1>
         <p>Your score: {{ $score }} / {{ count(session('questions', [])) }}</p>
         <p>Category: {{ $category }}</p>
 
