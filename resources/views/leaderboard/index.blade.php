@@ -1,5 +1,5 @@
 <x-layout>
-    <div class="container">
+    <div class="leaderboard-container">
         <h1>Leaderboard</h1>
         <table class="table">
             <thead>
