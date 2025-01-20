@@ -5,8 +5,9 @@
 
     <title>Quiz Game</title>
 
-     <!-- Vite assets -->
-     @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/js/dropdown.js'])
+    <!-- Vite assets -->
+    @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/js/dropdown.js', 'resources/js/footer.js'])
+
 
 
 </head>
@@ -37,7 +38,19 @@
         <main>
             {{ $slot }}
         </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p>Designed by Mawadda Kadi</p>
+                <p id="current-time"></p>
+            </div>
+        </footer>
+
     </div>
+
+    <!-- JS Scripts -->
+    <script src="/resources/js/footer.js"></script>
     <script src="/resources/js/dropdown.js"></script>
 </body>
 </html>

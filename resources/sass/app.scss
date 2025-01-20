@@ -446,6 +446,28 @@ table td {
 
 }
 
+// ------------------------ Footer
+.footer {
+    background-color: #1f1f1f;
+    color: #fca311;
+    padding: 10px 20px;
+    border-top: 2px solid #fca311;
+    text-align: center;
+
+    .footer-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    p {
+        margin: 0;
+        font-size: 0.9rem;
+    }
+}
+
 // -------------------------- Utilities
 .text-center {
     text-align: center;
