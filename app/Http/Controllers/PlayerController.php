@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Score;
+use App\Models\Question;
 use Illuminate\Http\Request;
 
 class PlayerController extends Controller

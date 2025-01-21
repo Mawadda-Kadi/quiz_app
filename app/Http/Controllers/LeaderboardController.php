@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
+use App\Models\Question;
 use App\Models\Score;
 
 class LeaderboardController extends Controller
@@ -20,7 +21,7 @@ class LeaderboardController extends Controller
             ->take(10) // Limit to the top 10
             ->get()
             ->map(function ($score) {
-            // Handle missing question gracefully
+            // Handle missing category
                 $score->category = $score->question->category ?? 'Unknown';
                 return $score;
             });

@@ -73,6 +73,8 @@ class QuizController extends Controller
             return redirect()->route('quiz.result');
         }
 
+        //---------- for the Progress Bar
+        
         // Get the current question
         $question = $questions[$index];
 

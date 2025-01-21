@@ -7,6 +7,7 @@
             @foreach ($categories as $category)
             <li>
                 <a href="{{ route('quiz.index', ['category' => $category]) }}">
+                    <img src="{{ asset('images/categories/' . strtolower($category) . '.jpeg') }}" alt="{{ $category }}">
                     {{ $category }}
                 </a>
             </li>
