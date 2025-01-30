@@ -1,66 +1,74 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Overview
+This document outlines the key aspects of the quiz app, including its purpose, features, target audience, and technology stack.
+Here is the deploy site: [Quiz App]()
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+---
 
-## About Laravel
+## Purpose and Goals
+The quiz app is designed to provide an engaging and interactive way for users to test their knowledge in different categories. The goals of the project include:
+- Delivering an intuitive and user-friendly quiz experience.
+- Allowing users to track their performance through a leaderboard.
+- Supporting multiple quiz categories.
+- Ensuring a responsive and visually appealing interface.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Target Audience
+The quiz app is aimed at:
+- Students and learners who want to test their general knowledge.
+- Developers and coding enthusiasts looking to improve their programming skills.
+- Individuals interested in IQ challenges and logical reasoning.
+- Pokémon fans who enjoy trivia-based games.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## User Experience (UX) Enhancements
+To enhance the user experience, the quiz app incorporates:
+- A **progress bar** to track quiz completion.
+- **Real-time feedback** on correct and incorrect answers.
+- A **leaderboard system** for competitive ranking.
+- **Minimal distractions** with a clean and simple UI.
+- **Mobile responsiveness** for accessibility on different devices.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Key Features
+- **Category Selection:** Users can choose from four categories: General Information, Coding, IQ Test, and Pokémon.
+- **Quiz System:** 10 randomized questions per quiz session.
+- **Scoring System:** Users receive scores based on correct answers.
+- **Leaderboard:** Displays the top 10 players with the highest scores.
+- **Player Profiles:** Users can track their past performance.
+- **Authentication:** Users have to log in to play and to save their scores.
+- **Responsive Design:** Works on both desktop and mobile devices.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## Languages
+- **PHP** (Backend logic)
+- **HTML** (Structure)
+- **CSS / SASS** (Styling)
+- **JavaScript** (Frontend interactions)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## Framework, Libraries, and Tools
+- **Laravel** (PHP framework for backend development)
+- **Bootstrap** (For UI components and responsiveness)
+- **SASS** (For custom styling and design enhancements)
+- **Blade Templating Engine** (For dynamic views in Laravel)
+- **SQLite** (Database management for storing quiz questions, user scores, etc.)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+---
 
-## Contributing
+## Technologies
+- **Vercel** (For depolyment)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## Credits:
+- [Coding Image](https://as.virginia.edu/inside-colleges-crash-course-coding)
+- [General Info Image](https://www.facebook.com/general.info.v/)
+- [Pokemon Image](https://deadline.com/gallery/how-to-watch-pokemon-in-order/)
+- [IQ Test Image](https://certifications.brainsfirst.com/brainsfirst-as-an-alternative-to-the-iq-test/)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
