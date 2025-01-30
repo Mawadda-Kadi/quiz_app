@@ -29,6 +29,7 @@ To enhance the user experience, the quiz app incorporates:
 - A **leaderboard system** for competitive ranking.
 - **Minimal distractions** with a clean and simple UI.
 - **Mobile responsiveness** for accessibility on different devices.
+- **Easy registration** with just a **name** and a simple **password** for quick access.
 
 ---
 
