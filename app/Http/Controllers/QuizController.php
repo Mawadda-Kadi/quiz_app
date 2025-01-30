@@ -20,14 +20,6 @@ class QuizController extends Controller
     public function index(Request $request)
     {
 
-        // // Debug Auth::id() and check if the user is authenticated
-        // if (!Auth::check()) {
-        //     return redirect()->route('login')->with('error', 'You must be logged in to start the quiz.');
-        // }
-
-        // dd(Auth::id(), $request->query('category'));
-
-
         // Define available categories
         $categories = ['General Information', 'IQ Test', 'Coding', 'Pokemon'];
 
@@ -66,7 +58,15 @@ class QuizController extends Controller
         // Retrieve questions from the session
         // Ensure all questions have been answered
         $questions = session('questions', []);
-        $category = session('category', 'Unknown');
+        $category = session('category');
+
+        // Save the category in the session
+        session(['category' => $category]);
+
+        // Throw an exception if the category is missing
+        if (!$category) {
+            throw new \Exception('Category is missing!');
+        }
 
         // Ensure the index is within bounds
         if (!isset($questions[$index])) {
@@ -74,7 +74,7 @@ class QuizController extends Controller
         }
 
         //---------- for the Progress Bar
-        
+
         // Get the current question
         $question = $questions[$index];
 
@@ -102,14 +102,6 @@ class QuizController extends Controller
         return redirect()->route('quiz.question', ['index' => $nextIndex]);
     }
 
-        // foreach ($answers as $id => $answer) {
-        //     $question = Question::find($id);
-        //     // Check Correctness:
-        //     // Compares the submitted answer with the correct_option in the database.
-        //     if ($question && $question->correct_option == $answer) {
-        //         $score++;
-        //     }
-        // }
 
     public function result()
     {
@@ -117,16 +109,19 @@ class QuizController extends Controller
             return redirect()->route('login')->with('error', 'You must be logged in to save your score.');
         }
 
+        $category = session('category');
+
+        if (!$category) {
+            throw new \Exception('Category is missing!');
+        }
+
         $questions = session('questions', []);
         $answers = session('answers', []);
-        $category = session('category', 'Unknown');
         $score = 0;
 
-        // Ensure all questions have been answered
         if (empty($questions)) {
             return redirect()->route('quiz.index')->with('error', 'No questions available.');
         }
-
 
         foreach ($questions as $index => $question) {
             if (isset($answers[$index]) && $answers[$index] == $question->correct_option) {
@@ -134,19 +129,14 @@ class QuizController extends Controller
             }
         }
 
-        // // Debug user ID before saving
-        // $userId = Auth::id();
-        // if (!$userId) {
-        //     return redirect()->route('login')->with('error', 'Failed to save your score. Please log in again.');
-        // }
-
-        // Save the score in the database
         Score::create([
             'user_id' => Auth::id(),
             'score' => $score,
             'category' => $category,
-            //'question_id' => $questions[0]->id ?? null, // Associate with the first question in the session
         ]);
+
+        // Debugging
+        //dd($category, session()->all());
 
         return view('quiz.result', compact('score', 'category'));
     }

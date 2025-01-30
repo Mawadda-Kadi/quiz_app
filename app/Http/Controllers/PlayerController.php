@@ -17,11 +17,17 @@ class PlayerController extends Controller
         // Perform case-insensitive matching
         $user = User::whereRaw('LOWER(name) = ?', [strtolower($decodedUsername)])->firstOrFail();
 
+        $category = session('category');
+
         // Get the last 10 scores
         $scores = Score::where('user_id', $user->id)
             ->orderBy('created_at', 'desc')
             ->take(10)
             ->get();
+
+        // Debugging
+        //dd($category, session()->all());
+        //dd($scores);
 
         // Find the best score for the user
         $bestScore = Score::where('user_id', $user->id)->max('score');
@@ -30,4 +36,3 @@ class PlayerController extends Controller
         return view('player.show', compact('user', 'scores', 'bestScore'));
     }
 }
-

@@ -20,6 +20,7 @@ class Score extends Model
     protected $fillable = [
         'user_id',
         'score',
+        'category',
     ];
 
     public function user()
@@ -27,16 +28,9 @@ class Score extends Model
         return $this->belongsTo(User::class);
     }
 
-
     // Define the relationship to the Question model
     public function question()
     {
         return $this->belongsTo(Question::class);
-    }
-
-    // Accessor getCategoryAttribute() to get the category from the related question
-    public function getCategoryAttribute()
-    {
-        return $this->attributes['category'] ?? 'Unknown';
     }
 }

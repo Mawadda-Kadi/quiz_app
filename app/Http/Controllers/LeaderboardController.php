@@ -12,19 +12,22 @@ class LeaderboardController extends Controller
     /**
      * Display the leaderboard.
      */
+
     public function index()
     {
+
+        $category = session('category');
+
         // Fetch scores ordered by score (desc) and created_at (desc)
         $scores = Score::with('user')
-            ->orderBy('score', 'desc')
-            ->orderBy('created_at', 'desc')
-            ->take(10) // Limit to the top 10
-            ->get()
-            ->map(function ($score) {
-            // Handle missing category
-                $score->category = $score->question->category ?? 'Unknown';
-                return $score;
-            });
+        ->orderBy('score', 'desc')
+        ->orderBy('created_at', 'desc')
+        ->take(10) // Limit to the top 10
+            ->get();
+
+        // Debugging
+        //dd($category, session()->all());
+        //dd($scores);
 
         return view('leaderboard.index', compact('scores'));
     }
