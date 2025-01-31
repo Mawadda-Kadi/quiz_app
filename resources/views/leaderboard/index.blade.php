@@ -18,10 +18,6 @@
                     <td>{{ $score->user->name }}</td> <!-- User Name -->
                     <td>{{ $score->score }}</td> <!-- Score -->
                     <td>{{ $score->category }}</td> <!-- Category -->
-
-
-
-
                     <td>{{ $score->created_at->format('d M Y, H:i') }}</td> <!-- Date -->
                 </tr>
                 @empty

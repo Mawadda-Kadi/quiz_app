@@ -1,5 +1,6 @@
 <x-layout>
-    <div class="container">
+    <div class="main-container">
+
         @if (!isset($questions))
         <!-- Category Selection -->
         <h1>Choose a Category</h1>

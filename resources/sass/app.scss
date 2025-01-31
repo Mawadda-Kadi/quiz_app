@@ -1,17 +1,13 @@
 // To Optimize the Output for Production: npm run build
 
+// Bootstrap
+@use "bootstrap";
 
 // Fonts
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Orbitron:wght@400;700&display=swap');
 
-// Bootstrap
-@import "~bootstrap/scss/_progress";
-
 // Variables
 @import 'variables';
-
-
-
 
 // ------------------------ Reset
 * {
@@ -21,13 +17,14 @@
 }
 
 :root {
-     --bs-table-bg: unset;
-     --bs-table-color: unset;
+    --bs-table-bg: unset;
+    --bs-table-color: unset;
 }
 
 // ---------------------- General Style
 body {
     font-family: 'Roboto', sans-serif;
+    letter-spacing: 1.5px;
     background-color: $secondary-background-color;
     color: #000;
     padding: 0;
@@ -47,203 +44,210 @@ body {
     border-radius: 10px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 
+    @media (max-width: 768px) {
+        margin: 10px;
+    }
+
 }
 
-// --------------------- Header Container
 .header-container {
-    justify-self: center;
-    max-width: 900px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 20px 0;
-}
-
-header {
-    background-color: $primary-background-color;
-    color: $secondary-background-color;
-    padding: 10px 20px;
-    text-align: left;
-}
-
-header nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    padding: 10px 0;
-}
-
-header nav h1 {
-    font-size: 1.8rem;
-    color: $secondary-background-color;
-    font-family: 'Orbitron', sans-serif;
-    margin: 0;
-    flex-shrink: 0;
-}
-
-header nav ul {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    gap: 20px;
-    flex-grow: 1;
-    justify-content: flex-end;
-}
-
-header nav ul li {
-    margin: 0;
-}
-
-header nav ul li a {
-    text-decoration: none;
-    color: #1f1f1f;
-    padding: 5px 10px;
-    border-radius: 5px;
-    transition: background 0.3s, transform 0.3s;
-
-    &:hover {
-        background: $hover-color;
-        transform: scale(1.05);
-    }
-}
-
-.menu-icon {
-    display: none;
-    font-size: 1.8rem;
-    cursor: pointer;
-    margin-left: auto;
-    background-size: contain;
-}
-
-/* When the 'show' class is added */
-nav ul.show {
-    display: block;
-}
-
-
-
-// ----------------------- Main Continer
-.main-container {
-    background: #1f1f1f;
-    border-radius: 10px;
-    padding: 20px;
-    max-width: 800px;
-    width: 80%;
-    margin: 0 auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    overflow: hidden;
-    //position: relative;
-}
-
-// -------------------- Main Content H1 and H3
-h1 {
-    margin-top: 30px;
-    margin-bottom: 30px;
-    color: #fff;
-    font-family: 'Orbitron', sans-serif;
-}
-
-h3 {
-    margin-top: 15px;
-    color: #fff;
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-}
-
-// ---------------------- Category Links (Grid Layout)
-ul {
-    list-style: none;
-    margin: 25px 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-
-    li {
-        background: #fca311;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-
-        a {
-            text-decoration: none;
-            color: #1f1f1f;
-            font-size: 1rem;
-            font-family: 'Orbitron', sans-serif;
-            ;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 15px;
-            transition: transform 0.3s, background 0.3s;
-
-            &:hover {
-                background: $hover-color;
-                transform: scale(1.05);
-            }
-
-            img {
-                width: 100px;
-                height: 100px;
-                object-fit: cover;
-                border-radius: 50%;
-                margin-bottom: 10px;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            }
-        }
-    }
-}
-
-// -------------------- Login and Register Container
-.auth-container {
-    margin-top: 50px;
-    background-color: #1f1f1f;
-    color: #fff;
-
-}
-
-.card-header {
-    background: #fca311;
-    margin-bottom: 20px;
-}
-
-.card {
-    background: rgb(58, 58, 58);
-    padding: $padding;
-    border-radius: $border-radius;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    color: #fff;
-    margin-bottom: 50px ;
-}
-
-button {
-    background: $secondary-color;
-    border: none;
+    background: $primary-bg;
     color: $text-color;
-    padding: $padding / 2;
-    border-radius: $border-radius;
-    font-family: $font-family-secondary;
-    cursor: pointer;
-    transition: background $transition-speed;
-    margin: 15px;
-    display: flex;
+    padding: 15px 0;
+    box-shadow: 0 0 10px rgba(20, 255, 236, 0.3);
+    border-bottom: 2px solid rgba(252, 163, 17, 0.5);
 
-    &:hover {
-        background: lighten($secondary-color, 10%);
-    }
+    header {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 20px;
 
-    &.btn-secondary {
-        background: $danger-color;
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
 
-        &:hover {
-            background: lighten($danger-color, 10%);
+            h1 {
+                font-size: 2rem;
+                color: $accent-color;
+                text-shadow: 0 0 10px $glow-color;
+                font-family: 'Orbitron', sans-serif;
+
+                @media (max-width: 768px) {
+                    font-size: 1.5rem;
+                }
+            }
+
+            ul {
+                display: flex;
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                gap: 20px;
+
+                li {
+                    a {
+                        text-decoration: none;
+                        color: $text-color;
+                        padding: 10px 15px;
+                        border-radius: 5px;
+                        transition: all 0.3s ease;
+                        text-transform: uppercase;
+                        font-size: 1rem;
+                        font-weight: bold;
+                        box-shadow: 0 0 10px transparent;
+
+                        &:hover {
+                            color: $accent-color;
+                            box-shadow: 0 0 10px $glow-color;
+                        }
+                    }
+                }
+            }
+
+            .menu-icon {
+                display: none;
+                font-size: 2rem;
+                cursor: pointer;
+                color: $secondary-accent;
+
+                @media (max-width: 768px) {
+                    display: block;
+                }
+            }
         }
     }
 }
 
-// ----------------------- Forms
+// ------------------------ Responsive Mobile Navigation
+
+@media (max-width: 768px) {
+    nav {
+        ul {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            background-color: $card-bg;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(20, 255, 236, 0.3);
+            border-radius: 5px;
+
+            li {
+                text-align: center;
+                margin: 10px 0;
+
+                a {
+                    display: block;
+                    padding: 10px;
+                    font-size: 1rem;
+                    color: $text-color;
+                }
+            }
+        }
+
+        ul.show {
+            display: flex;
+            transition: opacity 0.3s ease-in-out;
+        }
+    }
+}
+
+// ----------------------- Main Container
+.main-container {
+    background: $primary-bg;
+    color: $text-color;
+    font-family: 'Orbitron', sans-serif;
+    max-width: 900px;
+    width: 85%;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(252, 163, 17, 0.3);
+    border: 1px solid rgba(252, 163, 17, 0.5);
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+
+    h1 {
+        font-size: 2rem;
+        color: $accent-color;
+        text-shadow: 0 0 10px $glow-color;
+        margin-bottom: 20px;
+
+        @media (max-width: 768px) {
+            font-size: 1.5rem;
+        }
+    }
+
+    h3 {
+        font-size: 1.5rem;
+        color: $secondary-accent;
+        margin: 20px 0 10px;
+        text-shadow: 0 0 10px $secondary-accent;
+        border-bottom: 2px solid rgba(20, 255, 236, 0.5);
+        display: inline-block;
+        padding-bottom: 5px;
+
+        @media (max-width: 768px) {
+            font-size: 1.3rem;
+        }
+    }
+
+    // ---------------------- Category Links (Grid Layout)
+    .categories {
+        list-style: none;
+        padding: 0;
+        margin: 20px 0;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+
+        li {
+            background: #161616;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(20, 255, 236, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            font-size: 1rem;
+            overflow: hidden;
+
+            a {
+                text-decoration: none;
+                color: $secondary-accent;
+                font-size: 1rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 15px;
+                transition: transform 0.3s, background 0.3s;
+
+                &:hover {
+                    transform: scale(1.05);
+                    box-shadow: 0 0 15px $secondary-accent;
+                }
+
+                img {
+                    width: 100px;
+                    height: 100px;
+                    object-fit: cover;
+                    border-radius: 50%;
+                    margin-bottom: 10px;
+                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                }
+
+                @media (max-width: 768px) {
+                    font-size: 0.9rem;
+                    padding: 12px;
+                }
+            }
+        }
+    }
+}
+
+
+// ---------------------- Forms
 form {
     .form-control {
         border: 1px solid lighten($primary-color, 20%);
@@ -265,46 +269,6 @@ form {
     }
 }
 
-// ---------------------- Leaderboard Table
-
-/* Table Header */
-.leaderboard-container .table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-.leaderboard-container .table thead tr th {
-    background-color: #fca311!important;
-    color: #1f1f1f;
-    padding-left: 20px;
-    text-align: left;
-    font-weight: bold;
-
-}
-
-/* Table Body */
-.leaderboard-container .table tbody tr td {
-    background-color: #ffffe4!important;
-    color: #1f1f1f;
-    padding-left: 20px;
-}
-
-.leaderboard-container .table tbody tr:nth-child(odd) {
-    background-color: #fffff0!important;
-}
-
-.leaderboard-container table.table-hover tbody tr:hover {
-    background-color: #f4b95a!important;
-}
-
-table th,
-table td {
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-
 // --------------------------- Question Container
 .question-container {
     background: #1f1f1f;
@@ -318,7 +282,6 @@ table td {
     overflow: hidden;
     color: #fff;
     line-height: 1.5;
-    line-height: 24px;
 
     h1 {
         font-size: 2rem;
@@ -350,210 +313,262 @@ table td {
     }
 }
 
-// ------------------------- Quiz Result Container
-.quiz-result-container {
-    color: #fff;
-    margin: 15px;
-
-    a {
-        margin-top: 10px;
-    }
-}
-
-// -------------------------- Player Container
-.player-container {
-
-    .best-result {
-        color: #fff;
-        margin-bottom: 30px;
-    }
-
-    .scores {
-        margin-top: 0;
-        color: #fff;
-
-        h2 {
-            margin-bottom: 10px;
-        }
-
-        ul {
-            margin-top: 10px;
-            display: block;
-            list-style: none;
-            padding: 0;
-
-            li {
-                margin-bottom: 10px;
-                padding: 0;
-            }
-        }
-    }
-
-    ul {
-        list-style: none;
-        margin: 25px 0;
-        padding: 0;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-        color: #fff;
-        line-height: 1.8;
-        letter-spacing: 1px;
-
-        li {
-            background: #1f1f1f;
-            border-radius: 0px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: auto;
-            padding: 10px;
-            color: #fff;
-            line-height: 1.8;
-            letter-spacing: 1px;
-        }
-    }
-
-}
-
 // ------------------ Instructions Container
+
+
 .instructions-container {
+    background: $primary-bg;
+    color: $text-color;
+    font-family: 'Orbitron', sans-serif;
+    max-width: 900px;
+    width: 85%;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(252, 163, 17, 0.3);
+    border: 1px solid rgba(252, 163, 17, 0.5);
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+
+    @media (max-width: 768px) {
+        width: 95%;
+        padding: 20px;
+    }
 
     h1 {
-        text-align: center;
-        letter-spacing: 2px;
+        font-size: 2rem;
+        color: $accent-color;
+        text-shadow: 0 0 10px $glow-color;
+        margin-bottom: 20px;
+        animation: pulse 2s infinite alternate;
 
-    }
-
-    h3 {
-        background: #fca311;
-        line-height: 1.5;
-        letter-spacing: 2px;
-        padding: 7px;
-        display: inline;
-        border-radius: 3px;
-        color: #000;
+        @media (max-width: 768px) {
+            font-size: 1.8rem;
+        }
     }
 
     p {
-        color: #fff;
+        font-size: 1.1rem;
         line-height: 1.8;
-        letter-spacing: 1px;
-        margin-top: 20px;
         margin-bottom: 20px;
+        color: lighten($text-color, 20%);
     }
 
-    ul {
-        list-style-type: disc;
-        margin: 25px 0;
-        padding: 0;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-        color: #fff;
-        line-height: 1.8;
-        letter-spacing: 1px;
+    .steps {
+        margin-bottom: 3rem;
 
-        li {
-            background: #1f1f1f;
-            border-radius: 0px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: auto;
-            padding: 10px;
-            color: #fff;
-            line-height: 1.8;
-            letter-spacing: 1px;
+        h3 {
+            font-size: 1.5rem;
+            color: $secondary-accent;
+            margin: 20px 0 10px;
+            text-shadow: 0 0 10px $secondary-accent;
+            border-bottom: 2px solid rgba(20, 255, 236, 0.5);
+            display: inline-block;
+            padding-bottom: 5px;
+
+            @media (max-width: 768px) {
+                font-size: 1.3rem;
+            }
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+
+            li {
+                background: $card-bg;
+                padding: 15px;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(20, 255, 236, 0.2);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                font-size: 1rem;
+                color: lighten($text-color, 15%);
+
+                &:hover {
+                    transform: scale(1.05);
+                    box-shadow: 0 0 15px $secondary-accent;
+                }
+
+                strong {
+                    color: $accent-color;
+                }
+
+                @media (max-width: 768px) {
+                    font-size: 0.59rem;
+                }
+            }
         }
     }
 }
+
+// ----------------------------- Leaderboard Container
+.leaderboard-container {
+    background: $primary-bg;
+    color: $text-color;
+    font-family: 'Orbitron', sans-serif;
+    max-width: 900px;
+    width: 85%;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(252, 163, 17, 0.3);
+    border: 1px solid rgba(252, 163, 17, 0.5);
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+
+    h1 {
+        font-size: 2rem;
+        color: $accent-color;
+        text-shadow: 0 0 10px $glow-color;
+        margin-bottom: 20px;
+        animation: pulse 2s infinite alternate;
+
+        @media (max-width: 768px) {
+            font-size: 1.5rem;
+        }
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        box-shadow: 0 0 10px rgba(20, 255, 236, 0.3);
+        border-radius: 8px;
+        overflow: hidden;
+
+        thead {
+            background: $secondary-accent;
+            color: #000;
+
+            tr {
+                th {
+                    padding: 15px;
+                    font-size: 1.1rem;
+                    text-transform: uppercase;
+
+                    @media (max-width: 768px) {
+                        font-size: 0.9rem;
+                        padding: 10px;
+                    }
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                background: $card-bg;
+                transition: background 0.3s, box-shadow 0.3s;
+                color: lighten($text-color, 15%);
+
+                &:nth-child(even) {
+                    background: darken($card-bg, 5%);
+                }
+
+                &:hover {
+                    background: $glow-color;
+                    color: #000;
+                    transform: scale(1.02);
+                    box-shadow: 0 0 15px $secondary-accent;
+                }
+
+                td {
+                    //padding: 15px;
+                    text-align: center;
+
+                    @media (max-width: 768px) {
+                        font-size: 0.9rem;
+                        //padding: 10px;
+                    }
+                }
+            }
+        }
+    }
+}
+
 
 
 // ------------------------ Footer
 .footer {
-    background-color: #1f1f1f;
-    color: #fca311;
-    padding: 10px 20px;
-    border-top: 2px solid #fca311;
+    background-color: $primary-bg;
+    color: $text-color;
+    padding: 20px;
     text-align: center;
+    border-top: 2px solid $accent-color;
+    box-shadow: 0 0 10px rgba(20, 255, 236, 0.3);
+    margin-top: 40px;
 
     .footer-content {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        max-width: 800px;
+        max-width: 1100px;
         margin: 0 auto;
+        padding: 0 20px;
+
+        p {
+            font-size: 0.9rem;
+            color: lighten($text-color, 15%);
+        }
     }
 
-    p {
-        margin: 0;
-        font-size: 0.9rem;
+    @media (max-width: 768px) {
+        .footer-content {
+            flex-direction: column;
+            text-align: center;
+            gap: 10px;
+        }
     }
 }
 
-// -------------------------- Utilities
-.text-center {
+
+// Neon Button Styles
+.button-container {
     text-align: center;
-}
+    margin-top: 20px;
 
-.mt-3 {
-    margin-top: $margin / 2;
-}
-
-.mb-3 {
-    margin-bottom: $margin / 2;
-}
-
-// ----------------------- Responsive Adjustments
-@media (max-width: 768px) {
-    .game-container {
-        margin: 10px;
-    }
-
-    header nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px;
-    }
-
-    header nav ul {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        padding: 10px 0;
-        margin: 10px 0;
-        background-color: #fca311;
-        transition: opacity 0.3s ease-in-out;
+    a {
+        display: inline-block;
+        background: $secondary-accent;
+        padding: 12px 20px;
         border-radius: 5px;
-        justify-content: flex-start;
-        flex-grow: 0;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #000;
+        text-transform: uppercase;
+        box-shadow: 0 0 10px rgba(20, 255, 236, 0.8);
+        transition: all 0.3s ease-in-out;
+        text-decoration: none;
+
+        &:hover {
+            box-shadow: 0 0 20px $secondary-accent, 0 0 30px $secondary-accent;
+            transform: scale(1.1);
+        }
+    }
+}
+
+// Animations
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
     }
 
-    nav ul.show {
-        display: flex;
-        flex-direction: column;
-        transition: opacity 0.3s ease-in-out;
-        border-radius: 5px;
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    from {
+        text-shadow: 0 0 10px $glow-color;
     }
 
-    h1 {
-        font-size: 1.5rem;
-        margin: 0;
-        line-height: 1;
-    }
-
-    .menu-icon {
-        display: block;
-        cursor: pointer;
-        font-size: 1.5rem;
-        margin: 0;
-        line-height: 1;
-    }
-
-    nav ul li {
-        margin: 5px 0;
-    }
-
-    nav ul li:hover {
-        background-color: #f4b95a;
-        border-radius: 3px;
+    to {
+        text-shadow: 0 0 20px $glow-color;
     }
 }
