@@ -1,35 +1,36 @@
-//npm run build php artisan serve
-// --------------------------- Colors
-$primary-color: #1f1f1f;
-$secondary-color: #fcb440;
-$text-color: #ffffff;
-$secondary-text-color: #bdbdbd; // Muted text
-$danger-color: #d90429;
-$primary-background-color: #fcb440;
-$secondary-background-color: #1f1f1f;
-$hover-color: #fca311;
+//npm run build
+//php artisan serve
 
-// ------------------------- New Colors
+// ------------------------- Colors
+
 $primary-bg: #0c0c0c; // Dark background
 $card-bg: #161616; // Card background
 $text-color: #ffffff; // Main text color
 $accent-color: #fca311; // Highlight color
 $glow-color: rgba(252, 163, 17, 0.8);
 $secondary-accent: #14ffec; // Neon blue
+$danger-color: #ff4b5c; // Error messages
 
 
 // ------------------------------- Fonts
+
 $font-family-primary: 'Roboto', sans-serif;
 $font-family-secondary: 'Orbitron', sans-serif;
 
+
 // ----------------------------- Spacing
+
 $padding: 16px;
 $margin: 16px;
 
+
 // ------------------------ Border Radius
+
 $border-radius: 8px;
 
+
 // -------------------------- Transitions
+
 $transition-speed: 0.3s;
 
 

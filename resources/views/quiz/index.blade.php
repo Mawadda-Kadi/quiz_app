@@ -4,7 +4,8 @@
         @if (!isset($questions))
         <!-- Category Selection -->
         <h1>Choose a Category</h1>
-        <ul>
+        <ul class="categories">
+
             @foreach ($categories as $category)
             <li>
                 <a href="{{ route('quiz.index', ['category' => $category]) }}">

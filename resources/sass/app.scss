@@ -254,6 +254,133 @@ body {
 }
 
 
+// --------------------------- Player Profile Container
+
+.player-container {
+    background: $primary-bg;
+    border-radius: 10px;
+    padding: 25px;
+    max-width: 700px;
+    width: 90%;
+    margin: 50px auto;
+    box-shadow: 0 0 15px rgba(20, 255, 236, 0.3);
+    border: 1px solid rgba(20, 255, 236, 0.5);
+    text-align: center;
+    color: $text-color;
+    animation: fadeIn 1s ease-in-out;
+
+    h1 {
+        font-size: 2rem;
+        color: $accent-color !important;
+        text-shadow: 0 0 10px $glow-color;
+        margin-bottom: 15px;
+
+        @media (max-width: 768px) {
+            font-size: 1.6rem;
+        }
+    }
+
+    // --------------------------- Best Result Section
+    .best-result {
+        background: darken($card-bg, 5%);
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px $glow-color;
+        margin-bottom: 20px;
+
+        h2 {
+            font-size: 1.5rem;
+            color: $secondary-accent;
+            text-shadow: 0 0 10px $secondary-accent;
+            border-bottom: 2px solid rgba(20, 255, 236, 0.5);
+            display: inline-block;
+            padding-bottom: 5px;
+
+            @media (max-width: 768px) {
+                font-size: 1.3rem;
+            }
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: lighten($text-color, 20%);
+            margin-top: 10px;
+
+            @media (max-width: 768px) {
+                font-size: 1rem;
+            }
+        }
+    }
+
+    // --------------------------- Last Scores Section
+    .scores {
+        background: lighten($card-bg, 5%);
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(20, 255, 236, 0.3);
+
+        h2 {
+            font-size: 1.5rem;
+            color: $accent-color;
+            text-shadow: 0 0 10px $glow-color;
+            margin-bottom: 10px;
+
+            @media (max-width: 768px) {
+                font-size: 1.3rem;
+            }
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+
+            li {
+                background: rgba(255, 255, 255, 0.1);
+                padding: 10px;
+                border-radius: 5px;
+                margin-bottom: 5px;
+                transition: all 0.3s ease-in-out;
+
+                &:hover {
+                    background: rgba(255, 255, 255, 0.2);
+                    box-shadow: 0 0 10px $glow-color;
+                }
+
+                @media (max-width: 768px) {
+                    font-size: 0.9rem;
+                }
+            }
+        }
+
+        // --------------------------- Logout Button
+        button.btn-danger {
+            font-size: 1.2rem;
+            padding: 12px 20px;
+            border-radius: 5px;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+            background: $accent-color;
+            color: #000;
+            box-shadow: 0 0 10px $glow-color;
+            display: inline-block;
+            border: none;
+
+            &:hover {
+                box-shadow: 0 0 20px $glow-color, 0 0 30px $glow-color;
+                transform: scale(1.1);
+            }
+
+            @media (max-width: 768px) {
+                font-size: 1rem;
+                padding: 10px 16px;
+            }
+        }
+    }
+}
+
+
 // --------------------------- Question Container
 
 .question-container {
@@ -467,7 +594,6 @@ body {
 
 // ------------------ Instructions Container
 
-
 .instructions-container {
     background: $primary-bg;
     color: $text-color;
@@ -559,90 +685,84 @@ body {
     }
 }
 
-// ----------------------------- Leaderboard Container
+// --------------------------- Leaderboard Container
 
 .leaderboard-container {
     background: $primary-bg;
-    color: $text-color;
-    font-family: 'Orbitron', sans-serif;
-    max-width: 900px;
-    width: 85%;
-    margin: 40px auto;
-    padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 0 15px rgba(252, 163, 17, 0.3);
-    border: 1px solid rgba(252, 163, 17, 0.5);
+    padding: 25px;
+    max-width: 800px;
+    width: 90%;
+    margin: 50px auto;
+    box-shadow: 0 0 15px rgba(20, 255, 236, 0.3);
+    border: 1px solid rgba(20, 255, 236, 0.5);
     text-align: center;
+    color: $text-color;
     animation: fadeIn 1s ease-in-out;
 
     h1 {
         font-size: 2rem;
+        font-family: $font-family-secondary;
         color: $accent-color;
         text-shadow: 0 0 10px $glow-color;
-        margin-bottom: 20px;
-        animation: pulse 2s infinite alternate;
+        margin-bottom: 15px;
 
         @media (max-width: 768px) {
-            font-size: 1.5rem;
-        }
-    }
-
-    .table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-        box-shadow: 0 0 10px rgba(20, 255, 236, 0.3);
-        border-radius: 8px;
-        overflow: hidden;
-
-        thead {
-            background: $secondary-accent;
-            color: #000;
-
-            tr {
-                th {
-                    padding: 15px;
-                    font-size: 1.1rem;
-                    text-transform: uppercase;
-
-                    @media (max-width: 768px) {
-                        font-size: 0.9rem;
-                        padding: 10px;
-                    }
-                }
-            }
-        }
-
-        tbody {
-            tr {
-                background: $card-bg;
-                transition: background 0.3s, box-shadow 0.3s;
-                color: lighten($text-color, 15%);
-
-                &:nth-child(even) {
-                    background: darken($card-bg, 5%);
-                }
-
-                &:hover {
-                    background: $glow-color;
-                    color: #000;
-                    transform: scale(1.02);
-                    box-shadow: 0 0 15px $secondary-accent;
-                }
-
-                td {
-                    //padding: 15px;
-                    text-align: center;
-
-                    @media (max-width: 768px) {
-                        font-size: 0.9rem;
-                        //padding: 10px;
-                    }
-                }
-            }
+            font-size: 1.6rem;
         }
     }
 }
+
+// --------------------------- Leaderboard Table
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: $card-bg !important;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(20, 255, 236, 0.3);
+
+    thead {
+        tr {
+            background: $accent-color;
+            color: #000;
+            font-size: 1.2rem;
+
+            @media (max-width: 768px) {
+                font-size: 1rem;
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            transition: all 0.3s ease-in-out;
+            font-size: 1.1rem;
+            color: $text-color;
+
+            &:nth-child(odd) {
+                background: rgba(255, 255, 255, 0.05);
+            }
+
+            &:hover {
+                background: lighten($card-bg, 10%);
+                box-shadow: 0 0 10px $glow-color;
+            }
+
+            @media (max-width: 768px) {
+                font-size: 1rem;
+            }
+        }
+
+        td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    }
+}
+
 
 // ----------------------- Auth Container
 
@@ -659,72 +779,72 @@ body {
     border: 1px solid rgba(252, 163, 17, 0.5);
     text-align: center;
     animation: fadeIn 1s ease-in-out;
-}
 
-// ------------------------ Auth Card
-.auth-card {
-    background: $card-bg;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(20, 255, 236, 0.3);
-    padding: 20px;
+    // ------------------------ Auth Card
+    .auth-card {
+        background: $card-bg;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(20, 255, 236, 0.3);
+        padding: 20px;
 
-    .card-header {
-        font-size: 1.5rem;
-        color: $accent-color;
-        text-shadow: 0 0 10px $glow-color;
-        border-bottom: 2px solid $accent-color;
-        padding-bottom: 10px;
+        .card-header {
+            font-size: 1.5rem;
+            color: $accent-color;
+            text-shadow: 0 0 10px $glow-color;
+            border-bottom: 2px solid $accent-color;
+            padding-bottom: 10px;
 
-        @media (max-width: 768px) {
-            font-size: 1.3rem;
+            @media (max-width: 768px) {
+                font-size: 1.3rem;
+            }
         }
-    }
 
-    .card-body {
-        padding-top: 20px;
-    }
-}
+        .card-body {
+            padding-top: 20px;
 
-// ------------------------ Input Fields
-.input-group {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 15px;
-    text-align: left;
+            // ------------------------ Input Fields
+            .input-group {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                margin-bottom: 15px;
+                text-align: left;
 
-    label {
-        font-size: 1.1rem;
-        color: $secondary-accent;
-        display: block;
-        margin-bottom: 5px;
+                label {
+                    font-size: 1.1rem;
+                    color: $secondary-accent;
+                    display: block;
+                    margin-bottom: 5px;
 
-        @media (max-width: 768px) {
-            font-size: 1rem;
+                    @media (max-width: 768px) {
+                        font-size: 1rem;
+                    }
+                }
+
+                input {
+                    font-family: $font-family-primary;
+                    background: darken($card-bg, 5%);
+                    color: $text-color;
+                    border: 1px solid $secondary-accent;
+                    padding: 10px;
+                    border-radius: 5px;
+                    width: 100%;
+                    transition: all 0.3s ease-in-out;
+
+                    &:focus {
+                        border-color: $accent-color;
+                        box-shadow: 0 0 10px $glow-color;
+                    }
+                }
+
+                .error-message {
+                    color: $danger-color;
+                    font-size: 0.9rem;
+                    margin-top: 5px;
+                    display: block;
+                }
+            }
         }
-    }
-
-    input {
-        font-family: $font-family-primary;
-        background: darken($card-bg, 5%);
-        color: $text-color;
-        border: 1px solid $secondary-accent;
-        padding: 10px;
-        border-radius: 5px;
-        width: 100%;
-        transition: all 0.3s ease-in-out;
-
-        &:focus {
-            border-color: $accent-color;
-            box-shadow: 0 0 10px $glow-color;
-        }
-    }
-
-    .error-message {
-        color: #ff4b5c;
-        font-size: 0.9rem;
-        margin-top: 5px;
-        display: block;
     }
 }
 
@@ -807,6 +927,8 @@ body {
         }
     }
 }
+
+
 
 
 // -------------------- Neon Button Styles
