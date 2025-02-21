@@ -5,6 +5,7 @@
         <p>Category: {{ $category }}</p>
 
         <a href="{{ route('quiz.index') }}" class="btn btn-primary">Play Again</a>
+
     </div>
 </x-layout>
 
