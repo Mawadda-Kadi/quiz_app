@@ -1,6 +1,10 @@
 # Overview
 This document outlines the key aspects of the quiz app, including its purpose, features, target audience, and technology stack.
+To run the app locally: php artisan serve
 Here is the deploy site: [Quiz App]()
+
+npm run build
+php artisan serve
 
 ---
 
