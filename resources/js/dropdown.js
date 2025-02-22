@@ -1,13 +1,23 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const menuIcon = document.querySelector('.menu-icon'); // Select the menu icon
-    const navMenu = document.querySelector('nav ul'); // Select the navigation menu (ul)
+document.addEventListener('DOMContentLoaded', function () {
+    const menuIcon = document.querySelector('.menu-icon');
+    const navMenu = document.querySelector('nav ul');
 
-    // Ensure both elements exist in the DOM before attaching events
-    if (menuIcon && navMenu) {
-        menuIcon.addEventListener('click', () => {
-            navMenu.classList.toggle('show'); // Toggle the "show" class
-        });
-    } else {
+    if (!menuIcon || !navMenu) {
         console.error("Menu icon or navigation menu not found!");
+        return;
     }
+
+    menuIcon.addEventListener('click', function () {
+        navMenu.classList.toggle('show');
+
+        // Ensure menu closes when clicking outside
+        document.addEventListener('click', function (event) {
+            if (!navMenu.contains(event.target) && event.target !== menuIcon) {
+                navMenu.classList.remove('show');
+            }
+        });
+    });
 });
+
+
+

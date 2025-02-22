@@ -51,6 +51,9 @@ body {
     }
 }
 
+
+// ------------------------ Header Container
+
 .header-container {
     background: $primary-bg;
     color: $text-color;
@@ -71,6 +74,7 @@ body {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
 
             h1 {
                 font-size: 2rem;
@@ -89,6 +93,22 @@ body {
                 padding: 0;
                 margin: 0;
                 gap: 20px;
+                flex-wrap: wrap;
+                width: 100%;
+
+                @media (max-width: 768px) {
+                    display: none;
+                    flex-direction: column;
+                    width: 100%;
+                    position: absolute;
+                    top: 60px;
+                    left: 0;
+                    background-color: $card-bg;
+                    padding: 20px;
+                    box-shadow: 0 0 10px rgba(20, 255, 236, 0.3);
+                    border-radius: 5px;
+                    z-index: 1000;
+                }
 
                 li {
                     a {
@@ -106,58 +126,45 @@ body {
                             color: $accent-color;
                             box-shadow: 0 0 10px $glow-color;
                         }
+
+                        @media (max-width: 768px) {
+                            padding: 10px;
+                            font-size: 0.7rem;
+                            color: $text-color;
+                        }
                     }
                 }
             }
+        }
 
-            .menu-icon {
-                display: none;
-                font-size: 2rem;
-                cursor: pointer;
-                color: $secondary-accent;
+        .menu-icon {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: $secondary-accent;
 
-                @media (max-width: 768px) {
-                    display: block;
-                }
+            @media (max-width: 768px) {
+                display: block;
             }
         }
     }
-}
 
-// ------------------------ Responsive Mobile Navigation
-@media (max-width: 768px) {
-    nav {
-        ul {
-            display: none;
-            flex-direction: column;
-            width: 100%;
-            position: absolute;
-            top: 60px;
-            left: 0;
-            background-color: $card-bg;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(20, 255, 236, 0.3);
-            border-radius: 5px;
-
-            li {
-                text-align: center;
-                margin: 10px 0;
-
-                a {
-                    display: block;
-                    padding: 10px;
-                    font-size: 1rem;
-                    color: $text-color;
-                }
-            }
-        }
-
+    @media (max-width: 768px) {
         ul.show {
             display: flex;
+            opacity: 1;
+            transform: translateY(0);
             transition: opacity 0.3s ease-in-out;
+            flex-direction: row;
+            flex-wrap: wrap;
+            width: 100% !important;
+            padding: 10px;
+            margin: auto;
+            text-align: center;
         }
     }
 }
+
 
 // ----------------------- Main Container
 
@@ -731,10 +738,6 @@ button.btn-danger {
     color: $text-color;
     animation: fadeIn 1s ease-in-out;
 
-    @media (max-width: 768px) {
-        width: 100%;
-    }
-
     h1 {
         font-size: 2rem;
         font-family: $font-family-secondary;
@@ -746,63 +749,84 @@ button.btn-danger {
             font-size: 1.6rem;
         }
     }
-}
 
-// --------------------------- Leaderboard Table
-.leaderboard-container table.table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    background: $card-bg;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 0 10px rgba(20, 255, 236, 0.3);
+    // Wrapper to make the table responsive
+    .table-responsive {
+        overflow-x: auto;
+        max-width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(20, 255, 236, 0.3);
+    }
 
-    // Override Bootstrap defaults
-    --bs-table-bg: unset !important;
-    --bs-table-color: unset !important;
-    --bs-table-border-color: unset !important;
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: $card-bg;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(20, 255, 236, 0.3);
 
-    thead {
-        tr {
-            background: $accent-color;
-            color: #000;
-            font-size: 1.2rem;
-            font-family: $font-family-secondary;
-            text-align: center;
-            border-radius: 0;
+        // Override Bootstrap defaults
+        --bs-table-bg: unset !important;
+        --bs-table-color: unset !important;
+        --bs-table-border-color: unset !important;
 
-            @media (max-width: 768px) {
-                font-size: 1rem;
+        thead {
+            tr {
+                background: $accent-color;
+                color: #000;
+                font-size: 1.2rem;
+                text-align: center;
+                border-radius: 0;
+
+                @media (max-width: 768px) {
+                    font-size: 1rem;
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                font-size: 1.1rem;
+                color: $text-color;
+                transition: all 0.3s ease-in-out;
+                border-radius: 0;
+
+                &:nth-child(odd) {
+                    background: rgba(255, 255, 255, 0.05);
+                }
+
+                &:hover {
+                    background: #222222;
+                    box-shadow: 0 0 10px $secondary-accent;
+                }
+
+                @media (max-width: 768px) {
+                    font-size: 0.9rem;
+                }
+            }
+
+            td {
+                padding: 12px;
+                text-align: center;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                word-wrap: break-word;
             }
         }
     }
 
-    tbody {
-        tr {
-            font-size: 1.1rem;
-            color: $text-color;
-            transition: all 0.3s ease-in-out;
-            border-radius: 0;
-
-            &:nth-child(odd) {
-                background: rgba(255, 255, 255, 0.05);
-            }
-
-            &:hover {
-                background: #222222;
-                box-shadow: 0 0 10px $glow-color;
-            }
-
-            @media (max-width: 768px) {
-                font-size: 1rem;
-            }
+    @media (max-width: 768px) {
+        .table {
+            font-size: 0.8rem;
+            overflow-x: auto;
+            display: block;
+            white-space: nowrap;
         }
 
+        th,
         td {
-            padding: 12px;
+            padding: 8px;
             text-align: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
     }
 }
