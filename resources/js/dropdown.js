@@ -1,23 +1,22 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
     const menuIcon = document.querySelector('.menu-icon');
     const navMenu = document.querySelector('nav ul');
+    const mainElement = document.querySelector('main');
 
-    if (!menuIcon || !navMenu) {
-        console.error("Menu icon or navigation menu not found!");
-        return;
-    }
+    if (menuIcon && navMenu && mainElement) {
+        menuIcon.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
 
-    menuIcon.addEventListener('click', function () {
-        navMenu.classList.toggle('show');
-
-        // Ensure menu closes when clicking outside
-        document.addEventListener('click', function (event) {
-            if (!navMenu.contains(event.target) && event.target !== menuIcon) {
-                navMenu.classList.remove('show');
+            // Adjust main padding to push content down when menu opens
+            if (navMenu.classList.contains('show')) {
+                mainElement.style.paddingTop = `${navMenu.clientHeight}px`;
+            } else {
+                mainElement.style.paddingTop = '0px';
             }
         });
-    });
+    } else {
+        console.error("Menu icon, navigation menu, or main element not found!");
+    }
 });
-
 
 
