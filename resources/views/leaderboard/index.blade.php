@@ -2,6 +2,8 @@
     <div class="leaderboard-container">
         <h1>Leaderboard</h1>
         <table class="table">
+
+
             <thead>
                 <tr>
                     <th>Rank</th>

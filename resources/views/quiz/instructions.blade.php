@@ -58,8 +58,8 @@
                 <li>Keep an eye on the leaderboard: Be the best and show your skills!</li>
             </ul>
         </div>
-        
-        <p>Enjoy the game, and may the best quizzer win! 🌟</p>
+
+        <p class="end">Enjoy the game, and may the best quizzer win! 🌟</p>
     </div>
 
 </x-layout>

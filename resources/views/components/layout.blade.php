@@ -5,8 +5,12 @@
 
     <title>Quiz Game</title>
 
-    <!-- Vite assets -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/js/dropdown.js', 'resources/js/footer.js'])
+    <!-- Larvel Mix Assets -->
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <script src="{{ mix('js/app.js') }}" defer></script>
+    <script src="{{ mix('js/dropdown.js') }}" defer></script>
+    <script src="{{ mix('js/footer.js') }}" defer></script>
+
 
 
 
