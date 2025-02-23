@@ -3,7 +3,7 @@
     "scripts": {
         "prod": "npx mix --production",
         "build": "npm run prod",
-        "heroku-postbuild": "npm install && npm run build"
+        "heroku-postbuild": "npm install && npm run prod"
     },
     "devDependencies": {
         "@popperjs/core": "^2.11.6",
