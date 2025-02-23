@@ -1,10 +1,10 @@
 {
     "private": true,
-    "type": "module",
-    
+
     "scripts": {
     "dev": "mix",
     "prod": "mix --production",
+    "build": "npm run prod",
     "watch": "mix watch",
     "hot": "mix watch --hot"
     },

@@ -11,20 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('scores', function (Blueprint $table) {
-            $table->string('category')->nullable()->after('score');
-            // to be updated after population
-            // $table->string('category')->nullable(false)->change();
-        });
+        if (!Schema::hasColumn('scores', 'category')) {
+            Schema::table('scores', function (Blueprint $table) {
+                $table->string('category')->nullable()->after('score');
+            });
+        }
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::table('scores', function (Blueprint $table) {
-            //
+            if (Schema::hasColumn('scores', 'category')) {
+                $table->dropColumn('category');
+            }
         });
     }
 };

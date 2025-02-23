@@ -11,23 +11,35 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        // Create a new table without the `email` column
-        Schema::create('users_new', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->unique()->index();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
-        });
+        DB::statement('PRAGMA foreign_keys = OFF'); // Disable foreign key checks for SQLite
 
-        // Copy data from the old table to the new table
-        DB::statement('INSERT INTO users_new (id, name, password, remember_token, created_at, updated_at) SELECT id, name, password, remember_token, created_at, updated_at FROM users');
+        // Check if the new table exists before creating it
+        if (!Schema::hasTable('users_new')) {
+            Schema::create('users_new', function (Blueprint $table) {
+                $table->id();
+                $table->string('name')->unique()->index();
+                $table->string('password');
+                $table->rememberToken();
+                $table->timestamps();
+            });
 
-        // Drop the old table
-        Schema::drop('users');
+            // Copy data safely
+            DB::table('users_new')->insert(
+                DB::table('users')->select('id', 'name', 'password', 'remember_token', 'created_at', 'updated_at')->get()->toArray()
+            );
+        }
 
-        // Rename the new table to `users`
-        Schema::rename('users_new', 'users');
+        // Drop only if `users` exists
+        if (Schema::hasTable('users')) {
+            Schema::dropIfExists('users');
+        }
+
+        // Rename safely
+        if (Schema::hasTable('users_new')) {
+            Schema::rename('users_new', 'users');
+        }
+
+        DB::statement('PRAGMA foreign_keys = ON'); // Re-enable foreign key checks
     }
 
     /**
@@ -35,19 +47,27 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::create('users_old', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->unique()->index();
-            $table->string('email')->nullable(); // Restore the email column
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
-        });
+        DB::statement('PRAGMA foreign_keys = OFF'); // Disable foreign key checks
 
-        // Copy data back from the modified table
-        DB::statement('INSERT INTO users_old (id, name, password, remember_token, created_at, updated_at) SELECT id, name, password, remember_token, created_at, updated_at FROM users');
+        if (!Schema::hasTable('users_old')) {
+            Schema::create('users_old', function (Blueprint $table) {
+                $table->id();
+                $table->string('name')->unique()->index();
+                $table->string('email')->nullable(); // Restore email
+                $table->string('password');
+                $table->rememberToken();
+                $table->timestamps();
+            });
 
-        Schema::drop('users');
+            // Restore data
+            DB::table('users_old')->insert(
+                DB::table('users')->select('id', 'name', 'password', 'remember_token', 'created_at', 'updated_at')->get()->toArray()
+            );
+        }
+
+        Schema::dropIfExists('users');
         Schema::rename('users_old', 'users');
+
+        DB::statement('PRAGMA foreign_keys = ON'); // Re-enable foreign key checks
     }
 };
