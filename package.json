@@ -6,7 +6,9 @@
         "prod": "mix --production",
         "build": "mix --production",
         "watch": "mix watch",
-        "hot": "mix watch --hot"
+        "hot": "mix watch --hot",
+        "heroku-postbuild": "npm install && npm run prod"
+
     },
 
     "devDependencies": {
