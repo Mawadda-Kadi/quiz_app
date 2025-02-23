@@ -1,13 +1,9 @@
 {
     "private": true,
     "scripts": {
-        "dev": "npm run development",
-        "development": "mix",
-        "prod": "npm run production",
-        "production": "npm run build",
-        "build": "npx mix --production",
-        "watch": "mix watch",
-        "hot": "mix watch --hot",
+        "dev": "vite",
+        "prod": "vite build",
+        "build": "npm run prod",
         "heroku-postbuild": "npm install && npm run build"
     },
     "devDependencies": {
@@ -22,5 +18,9 @@
         "sass": "^1.56.1",
         "sass-loader": "^12.6.0",
         "tailwindcss": "^3.4.13"
+    },
+    "engines": {
+        "node": "20.x",
+        "npm": "10.x"
     }
 }
