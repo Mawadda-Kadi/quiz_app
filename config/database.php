@@ -92,8 +92,10 @@ return [
             'charset' => 'utf8',
             'prefix' => '',
             'schema' => 'public',
-            'sslmode' => env('DB_SSLMODE', 'prefer'),
+            'sslmode' => env('DB_SSLMODE', 'require'), // Ensure SSL is enabled
         ],
+
+
 
         'sqlsrv' => [
             'driver' => 'sqlsrv',
