@@ -1,12 +1,9 @@
 {
-    "private": true,
-    "scripts": {
+    "private": true,"scripts": {
         "dev": "node_modules/.bin/mix",
         "prod": "node_modules/.bin/mix --production",
         "build": "npm run prod",
-        "heroku-postbuild": "npm install && npm run build",
-        "watch": "mix watch",
-        "hot": "mix watch --hot"
+        "heroku-postbuild": "npm install --include=dev && npm run build"
     },
     "engines": {
         "node": "18.x",
