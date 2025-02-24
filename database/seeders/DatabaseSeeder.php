@@ -4,48 +4,45 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    // /**
-    //  * Seed the application's database.
 
-    // *public function run(): void
-    // *{
-    //     // User::factory(10)->create();
-
-    //     // Create a test user
-    //     User::factory()->create([
-    //         'name' => 'Test User',
-    //         'email' => 'test@example.com',
-    //     ]);
-
-    //     // Call the QuestionSeeder
-    //     $this->call(QuestionSeeder::class);
-    // } */
-
+    public $withinTransaction = false;
+    
     public function run()
     {
-        // Disable foreign key checks
-        DB::statement('PRAGMA foreign_keys = OFF;');
+        if (DB::connection()->getDriverName() === 'sqlite') {
+            // Disable foreign key checks for SQLite
+            DB::statement('PRAGMA foreign_keys = OFF;');
 
-        // Get all table names except 'questions'
-        $tables = DB::select('SELECT name FROM sqlite_master WHERE type="table"');
-        $tableNames = array_column($tables, 'name');
+            // Get all table names from SQLite, excluding system tables
+            $tables = DB::select('SELECT name FROM sqlite_master WHERE type="table"');
+            $tableNames = array_column($tables, 'name');
 
-        foreach ($tableNames as $table) {
-            // Skip the 'questions' table and system tables like sqlite_sequence
-            if ($table !== 'questions') {
-                DB::table($table)->delete();
+            foreach ($tableNames as $table) {
+                // Skip the 'questions' table and the sqlite_sequence table
+                if ($table !== 'questions' && $table !== 'sqlite_sequence') {
+                    DB::table($table)->delete();
+                }
+            }
+
+            // Re-enable foreign key checks for SQLite
+            DB::statement('PRAGMA foreign_keys = ON;');
+        } else {
+            // For PostgreSQL (or other drivers), fetch table names from the public schema
+            $tables = DB::select("SELECT tablename FROM pg_catalog.pg_tables WHERE schemaname = 'public'");
+            $tableNames = array_column($tables, 'tablename');
+
+            foreach ($tableNames as $table) {
+                // Skip the 'questions' table and 'migrations' table (if desired)
+                if ($table !== 'questions' && $table !== 'migrations') {
+                    DB::table($table)->delete();
+                }
             }
         }
-
-        // Re-enable foreign key checks
-        DB::statement('PRAGMA foreign_keys = ON;');
 
         $this->command->info('Database cleared, except for the questions table.');
     }
 }
-
