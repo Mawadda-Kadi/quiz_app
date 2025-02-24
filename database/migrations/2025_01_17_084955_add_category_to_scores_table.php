@@ -6,14 +6,13 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+    public $withinTransaction = false;
+
     public function up(): void
     {
         if (!Schema::hasColumn('scores', 'category')) {
             Schema::table('scores', function (Blueprint $table) {
-                $table->string('category')->nullable()->after('score');
+                $table->string('category')->nullable();
             });
         }
     }

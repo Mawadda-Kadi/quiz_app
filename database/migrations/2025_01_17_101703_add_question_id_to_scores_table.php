@@ -6,31 +6,26 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+    public $withinTransaction = false;
 
     public function up(): void
     {
         if (!Schema::hasColumn('scores', 'question_id')) {
             Schema::table('scores', function (Blueprint $table) {
                 $table->foreignId('question_id')
-                ->nullable()
-                    ->constrained('questions') // Ensures it references the `questions` table
-                    ->onDelete('cascade'); // Deletes scores if a related question is deleted
+                    ->nullable()
+                    ->constrained('questions')
+                    ->onDelete('cascade');
             });
         }
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::table('scores', function (Blueprint $table) {
             if (Schema::hasColumn('scores', 'question_id')) {
-                $table->dropForeign(['question_id']); // Drop foreign key constraint
-                $table->dropColumn('question_id'); // Remove the column
+                $table->dropForeign(['question_id']);
+                $table->dropColumn('question_id');
             }
         });
     }

@@ -10,15 +10,18 @@ return new class extends Migration
      * Run the migrations.
      * The questions table stores quiz questions, their options, and the correct answer.
      */
+
+    public $withinTransaction = false;
+
     public function up(): void
     {
         if (!Schema::hasTable('questions')) {
             Schema::create('questions', function (Blueprint $table) {
-                $table->id(); // Adds an auto-incrementing "primary key" column (id).
-                $table->string('question'); // Adds a column for the question text.
-                $table->json('options'); // Adds a column to store a JSON array of answer options.
-                $table->string('correct_option'); // Adds a column to store the correct answer (as a string or index).
-                $table->timestamps(); // Adds two columns: `created_at` and `updated_at`
+                $table->id();
+                $table->string('question');
+                $table->json('options');
+                $table->string('correct_option');
+                $table->timestamps();
             });
         }
     }

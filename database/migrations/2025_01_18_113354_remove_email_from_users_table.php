@@ -6,14 +6,19 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
 return new class extends Migration {
-    /**
-     * Run the migrations.
-     */
+
+    public $withinTransaction = false;
+
     public function up(): void
     {
-        DB::statement('PRAGMA foreign_keys = OFF'); // Disable foreign key checks for SQLite
+        // For PostgreSQL, drop the foreign key constraint on scores before dropping users
+        if (DB::connection()->getDriverName() === 'pgsql') {
+            Schema::table('scores', function (Blueprint $table) {
+                $table->dropForeign(['user_id']);
+            });
+        }
 
-        // Check if the new table exists before creating it
+        // Create a new temporary table without the email column
         if (!Schema::hasTable('users_new')) {
             Schema::create('users_new', function (Blueprint $table) {
                 $table->id();
@@ -23,51 +28,71 @@ return new class extends Migration {
                 $table->timestamps();
             });
 
-            // Copy data safely
+            // Copy data from the old users table (skipping the email column)
             DB::table('users_new')->insert(
-                DB::table('users')->select('id', 'name', 'password', 'remember_token', 'created_at', 'updated_at')->get()->toArray()
+                DB::table('users')
+                    ->select('id', 'name', 'password', 'remember_token', 'created_at', 'updated_at')
+                    ->get()
+                    ->toArray()
             );
         }
 
-        // Drop only if `users` exists
+        // Drop the old users table (the drop now succeeds because the dependent FK has been dropped)
         if (Schema::hasTable('users')) {
             Schema::dropIfExists('users');
         }
 
-        // Rename safely
+        // Rename users_new to users
         if (Schema::hasTable('users_new')) {
             Schema::rename('users_new', 'users');
         }
 
-        DB::statement('PRAGMA foreign_keys = ON'); // Re-enable foreign key checks
+        // Re-add the foreign key constraint on scores to point to the new users table
+        if (DB::connection()->getDriverName() === 'pgsql') {
+            Schema::table('scores', function (Blueprint $table) {
+                $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            });
+        }
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        DB::statement('PRAGMA foreign_keys = OFF'); // Disable foreign key checks
+        // For PostgreSQL, drop the foreign key constraint on scores before modifying users
+        if (DB::connection()->getDriverName() === 'pgsql') {
+            Schema::table('scores', function (Blueprint $table) {
+                $table->dropForeign(['user_id']);
+            });
+        }
 
+        // Recreate the old users table (with the email column) as users_old
         if (!Schema::hasTable('users_old')) {
             Schema::create('users_old', function (Blueprint $table) {
                 $table->id();
                 $table->string('name')->unique()->index();
-                $table->string('email')->nullable(); // Restore email
+                $table->string('email')->nullable();
                 $table->string('password');
                 $table->rememberToken();
                 $table->timestamps();
             });
 
-            // Restore data
+            // Restore data (note: email data will be null)
             DB::table('users_old')->insert(
-                DB::table('users')->select('id', 'name', 'password', 'remember_token', 'created_at', 'updated_at')->get()->toArray()
+                DB::table('users')
+                    ->select('id', 'name', 'password', 'remember_token', 'created_at', 'updated_at')
+                    ->get()
+                    ->toArray()
             );
         }
 
+        // Drop the current users table and rename users_old back to users
         Schema::dropIfExists('users');
         Schema::rename('users_old', 'users');
 
-        DB::statement('PRAGMA foreign_keys = ON'); // Re-enable foreign key checks
+        // Re-add the foreign key constraint on scores for PostgreSQL
+        if (DB::connection()->getDriverName() === 'pgsql') {
+            Schema::table('scores', function (Blueprint $table) {
+                $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            });
+        }
     }
 };
