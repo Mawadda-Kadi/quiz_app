@@ -5,6 +5,9 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
+    // Disable transactions for this migration (useful for PostgreSQL)
+    public $withinTransaction = false;
+
     /**
      * Run the migrations.
      */
@@ -28,4 +31,3 @@ return new class extends Migration {
         Schema::dropIfExists('sessions');
     }
 };
-
