@@ -10,7 +10,7 @@ class DatabaseSeeder extends Seeder
 {
 
     public $withinTransaction = false;
-    
+
     public function run()
     {
         if (DB::connection()->getDriverName() === 'sqlite') {
@@ -44,5 +44,8 @@ class DatabaseSeeder extends Seeder
         }
 
         $this->command->info('Database cleared, except for the questions table.');
+
+        // Seed the questions
+        $this->call(QuestionSeeder::class);
     }
 }
