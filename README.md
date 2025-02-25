@@ -1,10 +1,11 @@
 # Overview
 This document outlines the key aspects of the quiz app, including its purpose, features, target audience, and technology stack.
-To run the app locally: php artisan serve
-Here is the deploy site: [Quiz App]()
 
-npm run build
-php artisan serve
+To run the app locally: php artisan serve
+
+Here is the deployed site: [Quiz App](https://quizapp-mawaddakadi-10c80e833305.herokuapp.com/)
+
+
 
 ---
 
@@ -61,12 +62,13 @@ To enhance the user experience, the quiz app incorporates:
 - **Bootstrap** (For UI components and responsiveness)
 - **SASS** (For custom styling and design enhancements)
 - **Blade Templating Engine** (For dynamic views in Laravel)
-- **SQLite** (Database management for storing quiz questions, user scores, etc.)
+- **PGSQL** (Database management for storing quiz questions, user scores, etc.)
 
 ---
 
 ## Technologies
-- **Vercel** (For depolyment)
+- **Heroku** (For depolyment)
+- **Neon** (For PGSQL Database)
 
 ---
 
